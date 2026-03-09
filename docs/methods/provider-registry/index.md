@@ -1,4 +1,5 @@
-# ProviderRegistry Methods
+
+[Docs Home](../../README.md)
 
 - [`registerInstance`](register-instance.md)
 - [`registerClass`](register-class.md)

@@ -1,4 +1,5 @@
-# recordDeleteTypeName
+
+[Docs Home](../../README.md)
 
 ## Signature
 

@@ -1,4 +1,5 @@
-# getDomainInfo
+
+[Docs Home](../../README.md)
 
 ## Signature
 

@@ -6,10 +6,10 @@ This folder contains method-level documentation for the public API of `domain-pr
 
 ## Method reference
 
-- `methods/domain-provider/`: `DomainProviderInterface` contract methods
-- `methods/provider-registry/`: `ProviderRegistry` methods
-- `methods/godaddy-provider-factory/`: `GoDaddyProviderFactory` methods
-- `methods/godaddy-config/`: `GoDaddyConfig` constructor details
-- `methods/godaddy-domains-api-interface/`: GoDaddy domains API bridge methods
+- [`methods/domain-provider/index.md`](methods/domain-provider/index.md): `DomainProviderInterface` contract methods
+- [`methods/provider-registry/index.md`](methods/provider-registry/index.md): `ProviderRegistry` methods
+- [`methods/godaddy-provider-factory/index.md`](methods/godaddy-provider-factory/index.md): `GoDaddyProviderFactory` methods
+- [`methods/godaddy-config/index.md`](methods/godaddy-config/index.md): `GoDaddyConfig` constructor details
+- [`methods/godaddy-domains-api-interface/index.md`](methods/godaddy-domains-api-interface/index.md): GoDaddy domains API bridge methods
 
 Each file documents one method with signature, input parameters, return type, error behavior, and usage examples.

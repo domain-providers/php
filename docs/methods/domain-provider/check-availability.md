@@ -1,4 +1,5 @@
-# checkAvailability
+
+[Docs Home](../../README.md)
 
 ## Signature
 

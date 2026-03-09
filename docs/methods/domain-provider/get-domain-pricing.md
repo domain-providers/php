@@ -1,4 +1,5 @@
-# getDomainPricing
+
+[Docs Home](../../README.md)
 
 ## Signature
 

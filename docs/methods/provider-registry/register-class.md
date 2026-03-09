@@ -1,4 +1,5 @@
-# registerClass
+
+[Docs Home](../../README.md)
 
 ## Signature
 

@@ -1,4 +1,5 @@
-# getDomainForCustomer
+
+[Docs Home](../../README.md)
 
 ## Signature
 

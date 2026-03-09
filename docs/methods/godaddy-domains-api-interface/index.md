@@ -1,4 +1,5 @@
-# GoDaddyDomainsApiInterface Methods
+
+[Docs Home](../../README.md)
 
 - [`available`](available.md)
 - [`list`](list.md)
