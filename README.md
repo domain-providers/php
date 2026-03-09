@@ -65,6 +65,17 @@ This package includes contract methods for:
 
 Unsupported provider operations are reported through `UnsupportedCapabilityException`.
 
+## Method docs
+
+Detailed method-by-method documentation is available in:
+
+- `docs/README.md`
+- `docs/methods/domain-provider/index.md`
+- `docs/methods/provider-registry/index.md`
+- `docs/methods/godaddy-provider-factory/index.md`
+- `docs/methods/godaddy-config/index.md`
+- `docs/methods/godaddy-domains-api-interface/index.md`
+
 ## Custom providers outside this package
 
 You can register custom providers (class, instance, or factory) using `ProviderRegistry`.

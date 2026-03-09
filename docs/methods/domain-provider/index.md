@@ -1,0 +1,18 @@
+# DomainProviderInterface Methods
+
+- `metadata`: `metadata.md`
+- `supports`: `supports.md`
+- `checkAvailability`: `check-availability.md`
+- `registerDomain`: `register-domain.md`
+- `renewDomain`: `renew-domain.md`
+- `transferDomain`: `transfer-domain.md`
+- `getDomainInfo`: `get-domain-info.md`
+- `listDomains`: `list-domains.md`
+- `getNameservers`: `get-nameservers.md`
+- `setNameservers`: `set-nameservers.md`
+- `listDnsRecords`: `list-dns-records.md`
+- `createDnsRecord`: `create-dns-record.md`
+- `updateDnsRecord`: `update-dns-record.md`
+- `deleteDnsRecord`: `delete-dns-record.md`
+- `getDomainPricing`: `get-domain-pricing.md`
+- `checkTransferAvailability`: `check-transfer-availability.md`
