@@ -33,7 +33,7 @@ final class FakeProvider implements DomainProviderInterface
         return new AvailabilityResult(true, false);
     }
 
-    public function registerDomain(DomainName $domain, DomainRegistrationPeriod $period, DomainContact $registrantContact, ?NameserverSet $nameservers = null, ?bool $privacyEnabled = null): OperationResult
+    public function registerDomain(DomainName $domain, DomainRegistrationPeriod $period, DomainContact $registrantContact, ?NameserverSet $nameservers = null, ?bool $privacyEnabled = null, ?string $marketId = null): OperationResult
     {
         return new OperationResult(true);
     }
@@ -53,7 +53,7 @@ final class FakeProvider implements DomainProviderInterface
         return new DomainInfo($domain->full, 'active');
     }
 
-    public function listDomains(?int $page = null, ?int $pageSize = null, ?string $status = null): array
+    public function listDomains(?int $page = null, ?int $pageSize = null, ?string $status = null, ?string $shopperId = null): array
     {
         return [];
     }
@@ -73,17 +73,17 @@ final class FakeProvider implements DomainProviderInterface
         return [];
     }
 
-    public function createDnsRecord(DomainName $domain, DnsRecord $record): OperationResult
+    public function createDnsRecord(DomainName $domain, DnsRecord $record, ?string $shopperId = null): OperationResult
     {
         return new OperationResult(true);
     }
 
-    public function updateDnsRecord(DomainName $domain, DnsRecord $record): OperationResult
+    public function updateDnsRecord(DomainName $domain, DnsRecord $record, ?string $shopperId = null): OperationResult
     {
         return new OperationResult(true);
     }
 
-    public function deleteDnsRecord(DomainName $domain, ?string $recordId = null, ?DnsRecord $matchRecord = null): OperationResult
+    public function deleteDnsRecord(DomainName $domain, ?string $recordId = null, ?DnsRecord $matchRecord = null, ?string $shopperId = null): OperationResult
     {
         return new OperationResult(true);
     }

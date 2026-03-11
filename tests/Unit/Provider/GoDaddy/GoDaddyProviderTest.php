@@ -25,9 +25,7 @@ final class GoDaddyProviderTest extends TestCase
             apiKey: 'key',
             apiSecret: 'secret',
             customerId: 'cust-1',
-            shopperId: 'shopper-1',
             environment: 'sandbox',
-            marketId: 'en-US',
         );
     }
 
@@ -140,6 +138,7 @@ final class GoDaddyProviderTest extends TestCase
             $this->contact(),
             null,
             true,
+            'en-US',
         );
 
         self::assertTrue($result->success);
@@ -221,7 +220,7 @@ final class GoDaddyProviderTest extends TestCase
                 ],
             ]);
 
-        $items = $this->provider($api)->listDomains(page: 1, pageSize: 10, status: 'active');
+        $items = $this->provider($api)->listDomains(page: 1, pageSize: 10, status: 'active', shopperId: 'shopper-1');
 
         self::assertCount(2, $items);
         self::assertSame('one.com', $items[0]->domain);
@@ -277,7 +276,7 @@ final class GoDaddyProviderTest extends TestCase
             ->willReturn(['ok' => true, 'path' => '/dns-create']);
 
         $record = new DnsRecord(id: null, type: 'A', name: '@', value: '1.2.3.4', ttl: 600);
-        $result = $this->provider($api)->createDnsRecord(new DomainName('example.com'), $record);
+        $result = $this->provider($api)->createDnsRecord(new DomainName('example.com'), $record, 'shopper-1');
 
         self::assertTrue($result->success);
     }
@@ -293,7 +292,7 @@ final class GoDaddyProviderTest extends TestCase
             ->willReturn(['ok' => true, 'path' => '/dns-update']);
 
         $record = new DnsRecord(id: null, type: 'A', name: '@', value: '5.6.7.8', ttl: 600);
-        $result = $this->provider($api)->updateDnsRecord(new DomainName('example.com'), $record);
+        $result = $this->provider($api)->updateDnsRecord(new DomainName('example.com'), $record, 'shopper-1');
 
         self::assertTrue($result->success);
     }
@@ -314,7 +313,7 @@ final class GoDaddyProviderTest extends TestCase
             ->willReturn(['ok' => true, 'path' => '/dns-delete']);
 
         $record = new DnsRecord(id: null, type: 'A', name: '@', value: '1.2.3.4', ttl: 600);
-        $result = $this->provider($api)->deleteDnsRecord(new DomainName('example.com'), null, $record);
+        $result = $this->provider($api)->deleteDnsRecord(new DomainName('example.com'), null, $record, 'shopper-1');
 
         self::assertTrue($result->success);
     }

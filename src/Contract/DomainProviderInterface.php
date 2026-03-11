@@ -29,6 +29,7 @@ interface DomainProviderInterface
         DomainContact $registrantContact,
         ?NameserverSet $nameservers = null,
         ?bool $privacyEnabled = null,
+        ?string $marketId = null,
     ): OperationResult;
 
     public function renewDomain(DomainName $domain, DomainRegistrationPeriod $period): OperationResult;
@@ -42,7 +43,7 @@ interface DomainProviderInterface
     public function getDomainInfo(DomainName $domain): DomainInfo;
 
     /** @return list<DomainInfo> */
-    public function listDomains(?int $page = null, ?int $pageSize = null, ?string $status = null): array;
+    public function listDomains(?int $page = null, ?int $pageSize = null, ?string $status = null, ?string $shopperId = null): array;
 
     public function getNameservers(DomainName $domain): NameserverSet;
 
@@ -51,11 +52,11 @@ interface DomainProviderInterface
     /** @return list<DnsRecord> */
     public function listDnsRecords(DomainName $domain): array;
 
-    public function createDnsRecord(DomainName $domain, DnsRecord $record): OperationResult;
+    public function createDnsRecord(DomainName $domain, DnsRecord $record, ?string $shopperId = null): OperationResult;
 
-    public function updateDnsRecord(DomainName $domain, DnsRecord $record): OperationResult;
+    public function updateDnsRecord(DomainName $domain, DnsRecord $record, ?string $shopperId = null): OperationResult;
 
-    public function deleteDnsRecord(DomainName $domain, ?string $recordId = null, ?DnsRecord $matchRecord = null): OperationResult;
+    public function deleteDnsRecord(DomainName $domain, ?string $recordId = null, ?DnsRecord $matchRecord = null, ?string $shopperId = null): OperationResult;
 
     public function getDomainPricing(
         ?DomainName $domain = null,

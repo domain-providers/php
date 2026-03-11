@@ -33,7 +33,6 @@ $config = new GoDaddyConfig(
     apiKey: 'your-key',
     apiSecret: 'your-secret',
     customerId: 'your-customer-id',
-    shopperId: 'optional-shopper-id',
     // Routing fields shared by all ProviderConfig implementations:
     onlyTlds: null,
     exceptTlds: ['rs', 'co.rs', 'in.rs'],
@@ -51,6 +50,9 @@ if ($availability->available) {
         new DomainRegistrationPeriod(1)
     );
 }
+
+// Request-scoped values like shopper and market are passed where needed:
+$domains = $provider->listDomains(status: 'active', shopperId: 'optional-shopper-id');
 ```
 
 ## Provider-agnostic routing handler

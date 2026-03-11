@@ -141,7 +141,7 @@ final class RoutingTestProvider implements DomainProviderInterface, TldDiscovery
         return new AvailabilityResult(true, false, null, null, $this->key);
     }
 
-    public function registerDomain(DomainName $domain, DomainRegistrationPeriod $period, DomainContact $registrantContact, ?NameserverSet $nameservers = null, ?bool $privacyEnabled = null): OperationResult
+    public function registerDomain(DomainName $domain, DomainRegistrationPeriod $period, DomainContact $registrantContact, ?NameserverSet $nameservers = null, ?bool $privacyEnabled = null, ?string $marketId = null): OperationResult
     {
         return new OperationResult(true, providerReference: $this->key);
     }
@@ -161,7 +161,7 @@ final class RoutingTestProvider implements DomainProviderInterface, TldDiscovery
         return new DomainInfo($domain->full, 'active', providerReference: $this->key);
     }
 
-    public function listDomains(?int $page = null, ?int $pageSize = null, ?string $status = null): array
+    public function listDomains(?int $page = null, ?int $pageSize = null, ?string $status = null, ?string $shopperId = null): array
     {
         return [];
     }
@@ -181,17 +181,17 @@ final class RoutingTestProvider implements DomainProviderInterface, TldDiscovery
         return [];
     }
 
-    public function createDnsRecord(DomainName $domain, DnsRecord $record): OperationResult
+    public function createDnsRecord(DomainName $domain, DnsRecord $record, ?string $shopperId = null): OperationResult
     {
         return new OperationResult(true, providerReference: $this->key);
     }
 
-    public function updateDnsRecord(DomainName $domain, DnsRecord $record): OperationResult
+    public function updateDnsRecord(DomainName $domain, DnsRecord $record, ?string $shopperId = null): OperationResult
     {
         return new OperationResult(true, providerReference: $this->key);
     }
 
-    public function deleteDnsRecord(DomainName $domain, ?string $recordId = null, ?DnsRecord $matchRecord = null): OperationResult
+    public function deleteDnsRecord(DomainName $domain, ?string $recordId = null, ?DnsRecord $matchRecord = null, ?string $shopperId = null): OperationResult
     {
         return new OperationResult(true, providerReference: $this->key);
     }

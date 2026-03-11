@@ -4,7 +4,7 @@
 ## Signature
 
 ```php
-public function createDnsRecord(DomainName $domain, DnsRecord $record): OperationResult;
+public function createDnsRecord(DomainName $domain, DnsRecord $record, ?string $shopperId = null): OperationResult;
 ```
 
 ## Purpose
@@ -15,6 +15,7 @@ Create a DNS record in a domain zone.
 
 - `domain`: target `DomainName`
 - `record`: `DnsRecord`
+- `shopperId`: optional shopper scope header value
 
 ## Return
 

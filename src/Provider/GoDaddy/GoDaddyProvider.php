@@ -150,6 +150,7 @@ final class GoDaddyProvider implements DomainProviderInterface, TldDiscoveryInte
         DomainContact $registrantContact,
         ?NameserverSet $nameservers = null,
         ?bool $privacyEnabled = null,
+        ?string $marketId = null,
     ): OperationResult {
         $this->assertCapability(Capabilities::DOMAIN_REGISTRATION);
 
@@ -159,7 +160,7 @@ final class GoDaddyProvider implements DomainProviderInterface, TldDiscoveryInte
             'consent' => [
                 'agreedAt' => gmdate('Y-m-d\\TH:i:s\\Z'),
                 'agreedBy' => 'domain-providers/php',
-                'agreementKeys' => $this->fetchAgreementKeys($domain->tld, $privacyEnabled ?? false),
+                'agreementKeys' => $this->fetchAgreementKeys($domain->tld, $privacyEnabled ?? false, $marketId),
             ],
             'contactAdmin' => $this->toGoDaddyContact($registrantContact),
             'contactBilling' => $this->toGoDaddyContact($registrantContact),
@@ -291,13 +292,13 @@ final class GoDaddyProvider implements DomainProviderInterface, TldDiscoveryInte
         }
     }
 
-    public function listDomains(?int $page = null, ?int $pageSize = null, ?string $status = null): array
+    public function listDomains(?int $page = null, ?int $pageSize = null, ?string $status = null, ?string $shopperId = null): array
     {
         $this->assertCapability(Capabilities::DOMAIN_LISTING);
 
         try {
             $response = $this->domainsApi->list(
-                xShopperId: $this->config->shopperId,
+                xShopperId: $shopperId,
                 statuses: $status !== null ? [$status] : null,
                 limit: $pageSize,
                 marker: $page !== null ? (string) $page : null,
@@ -375,7 +376,7 @@ final class GoDaddyProvider implements DomainProviderInterface, TldDiscoveryInte
         throw new UnsupportedCapabilityException(Capabilities::DNS_RECORD_LIST);
     }
 
-    public function createDnsRecord(DomainName $domain, DnsRecord $record): OperationResult
+    public function createDnsRecord(DomainName $domain, DnsRecord $record, ?string $shopperId = null): OperationResult
     {
         $this->assertCapability(Capabilities::DNS_RECORD_CREATE);
 
@@ -383,7 +384,7 @@ final class GoDaddyProvider implements DomainProviderInterface, TldDiscoveryInte
             $response = $this->domainsApi->recordAdd(
                 domain: $domain->full,
                 records: [$record->toArray()],
-                xShopperId: $this->config->shopperId,
+                xShopperId: $shopperId,
             );
 
             return new OperationResult(
@@ -398,7 +399,7 @@ final class GoDaddyProvider implements DomainProviderInterface, TldDiscoveryInte
         }
     }
 
-    public function updateDnsRecord(DomainName $domain, DnsRecord $record): OperationResult
+    public function updateDnsRecord(DomainName $domain, DnsRecord $record, ?string $shopperId = null): OperationResult
     {
         $this->assertCapability(Capabilities::DNS_RECORD_UPDATE);
 
@@ -408,7 +409,7 @@ final class GoDaddyProvider implements DomainProviderInterface, TldDiscoveryInte
                 type: strtoupper($record->type),
                 name: $record->name,
                 records: [$record->toArray()],
-                xShopperId: $this->config->shopperId,
+                xShopperId: $shopperId,
             );
 
             return new OperationResult(
@@ -423,7 +424,7 @@ final class GoDaddyProvider implements DomainProviderInterface, TldDiscoveryInte
         }
     }
 
-    public function deleteDnsRecord(DomainName $domain, ?string $recordId = null, ?DnsRecord $matchRecord = null): OperationResult
+    public function deleteDnsRecord(DomainName $domain, ?string $recordId = null, ?DnsRecord $matchRecord = null, ?string $shopperId = null): OperationResult
     {
         $this->assertCapability(Capabilities::DNS_RECORD_DELETE);
 
@@ -441,7 +442,7 @@ final class GoDaddyProvider implements DomainProviderInterface, TldDiscoveryInte
                 domain: $domain->full,
                 type: strtoupper($matchRecord->type),
                 name: $matchRecord->name,
-                xShopperId: $this->config->shopperId,
+                xShopperId: $shopperId,
             );
 
             return new OperationResult(
@@ -628,13 +629,13 @@ final class GoDaddyProvider implements DomainProviderInterface, TldDiscoveryInte
     }
 
     /** @return list<string> */
-    private function fetchAgreementKeys(string $tld, bool $privacy): array
+    private function fetchAgreementKeys(string $tld, bool $privacy, ?string $marketId = null): array
     {
         try {
             $response = $this->domainsApi->getAgreement(
                 tlds: [strtolower($tld)],
                 privacy: $privacy,
-                xMarketId: $this->config->marketId,
+                xMarketId: $marketId,
                 forTransfer: false,
             );
             $data = $this->extractData($response);

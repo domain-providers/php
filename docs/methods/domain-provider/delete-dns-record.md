@@ -4,7 +4,7 @@
 ## Signature
 
 ```php
-public function deleteDnsRecord(DomainName $domain, ?string $recordId = null, ?DnsRecord $matchRecord = null): OperationResult;
+public function deleteDnsRecord(DomainName $domain, ?string $recordId = null, ?DnsRecord $matchRecord = null, ?string $shopperId = null): OperationResult;
 ```
 
 ## Purpose
@@ -16,6 +16,7 @@ Delete a DNS record.
 - `domain`: target `DomainName`
 - `recordId`: optional provider record ID
 - `matchRecord`: optional typed match context
+- `shopperId`: optional shopper scope header value
 
 ## Return
 

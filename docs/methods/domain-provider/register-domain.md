@@ -10,6 +10,7 @@ public function registerDomain(
     DomainContact $registrantContact,
     ?NameserverSet $nameservers = null,
     ?bool $privacyEnabled = null,
+    ?string $marketId = null,
 ): OperationResult;
 ```
 
@@ -24,6 +25,7 @@ Register a domain for the configured provider account context.
 - `registrantContact`: `DomainContact`
 - `nameservers`: optional `NameserverSet`
 - `privacyEnabled`: optional privacy flag
+- `marketId`: optional market scope used by providers that require it
 
 ## Return
 
